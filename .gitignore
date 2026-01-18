@@ -27,6 +27,7 @@ build/
 # Environment
 .env
 .env.local
+pip_token.txt
 
 # OS
 .DS_Store
