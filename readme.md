@@ -1,4 +1,4 @@
-# 🎮 MineCode
+# 🎮 MineCode MCP
 
 **MCP Server for Minecraft Datapack Development**
 
@@ -91,14 +91,14 @@ Add to `claude_desktop_config.json`:
 
 ---
 
-## ⚙️ Setup & Running
+## ⚙️ Developpment
 
 Follow these steps to set up a local development environment, run the MCP server, and publish releases.
-
-- Development environment (recommended):
+- Development environment:
 
 	PowerShell (Windows):
 	```powershell
+  
 	python -m venv venv
 	.\venv\Scripts\Activate.ps1
 	python -m pip install --upgrade pip build twine
