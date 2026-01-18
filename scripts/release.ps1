@@ -46,7 +46,10 @@ function Get-VersionFromPyproject {
     param([string]$Path)
     $text = Get-Content -Raw -Encoding UTF8 $Path
     # Match version = "..." or version = '...'
-    $m = [regex]::Match($text, 'version\s*=\s*["\'](?<v>[^"\']+)["\']')
+    $pattern = @'
+version\s*=\s*["'](?<v>[^"']+)["']
+'@
+    $m = [regex]::Match($text, $pattern)
     if (-not $m.Success) { return $null }
     $ver = $m.Groups['v'].Value
     # Split and take numeric major.minor.patch (ignore pre-release/build metadata)
@@ -67,12 +70,16 @@ function Set-VersionInPyproject {
     $text = Get-Content -Raw -Encoding UTF8 $Path
     # Preserve quote style (single or double) when replacing
     $quote = '"'
-    if ($text -match "version\s*=\s*'[^"]+'") { $quote = "'" }
-    $replacement = "version = $quote$NewVersion$quote"
-    $newText = [regex]::Replace($text, 'version\s*=\s*["\'][^"\']+["\']', [regex]::Escape($replacement))
-    # If replacement via regex escape failed, fallback to a simple replace of the version value
+    if ($text -match "version\s*=\s*'[^']+'") { $quote = "'" }
+    $replacement = 'version = ' + $quote + $NewVersion + $quote
+    $matchPattern = @'
+version\s*=\s*["'][^"']+["']
+'@
+    $newText = [regex]::Replace($text, $matchPattern, $replacement)
+    # If replacement did not take effect, fallback to a simpler replacement
     if (-not ($newText -match [regex]::Escape($replacement))) {
-        $newText = [regex]::Replace($text, 'version\s*=\s*["\'][^"\']+["\']', "version = \"$NewVersion\"")
+        $fallback = 'version = "' + $NewVersion + '"'
+        $newText = [regex]::Replace($text, $matchPattern, $fallback)
     }
     Set-Content -Path $Path -Value $newText -Encoding UTF8
 }
