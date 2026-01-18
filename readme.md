@@ -128,21 +128,20 @@ Follow these steps to set up a local development environment, run the MCP server
 
 - Release workflow (single-script): use the provided `scripts/release.ps1` to bump, build and publish.
 
-	Examples (PowerShell):
-	```powershell
-	# Build only
-	.\scripts\release.ps1
+- Release (recommended): a single PowerShell script handles bumping, building, tagging, pushing, and publishing.
 
-	# Bump patch, build, tag, push, and publish (reads token from pip_token.txt)
-	.\scripts\release.ps1 -Bump -Publish
+  Prerequisites:
+  - Create and activate a Python virtualenv and install `build` + `twine`.
+  - Put your PyPI API token in `pip_token.txt` (single line) or set `PYPI_API_TOKEN` as an environment/secret.
 
-	# Build and publish without bump
-	.\scripts\release.ps1 -Publish
-	```
+  Usage examples (PowerShell):
+  - Build only: `.\scripts\release.ps1`
+  - Bump patch, tag, push, and publish: `.\scripts\release.ps1 -Bump -Publish`
+  - Publish without bump: `.\scripts\release.ps1 -Publish`
 
-	Notes:
-	- `pip_token.txt` (or `PYPI_API_TOKEN`) is used to upload to PyPI. Keep it secret.
-	- The script prefers `venv\Scripts\python.exe` when present.
+  The script prefers `venv\Scripts\python.exe` when present and will fall back to the system `python`.
+
+  CI: a GitHub Actions workflow (`.github/workflows/publish.yml`) publishes on tag push; add `PYPI_API_TOKEN` to repository secrets.
 
 - Manual build & publish (alternative):
 
