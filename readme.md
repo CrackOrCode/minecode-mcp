@@ -2,62 +2,67 @@
 
 **MCP Server for Minecraft Datapack Development**
 
-MineCode is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that supercharges AI assistants like **GitHub Copilot**, **Claude**, and **ChatGPT** with Minecraft-specific knowledge and tools. It provides real-time access to Minecraft data, wiki information, bug tracking, and datapack generators.
+[![PyPI](https://img.shields.io/pypi/v/minecode-mcp)](https://pypi.org/project/minecode-mcp/)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![MCP](https://img.shields.io/badge/MCP-1.25.0-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+MineCode is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that gives AI assistants like **GitHub Copilot** and **Claude** real-time access to Minecraft data, documentation, and datapack generators.
 
 ---
 
 ## ✨ Features
 
-- **19 MCP Tools** for comprehensive Minecraft development
-- **Real-time Data** from multiple authoritative sources
-- **Version-specific** information (blocks, items, commands, registries)
-- **Datapack Generators** access to loot tables, recipes, biomes, dimensions
-- **Bug Tracking** integration with Mojira
-- **Works with** VS Code, Claude Desktop, and any MCP-compatible client
+- 🔧 **19 MCP Tools** for Minecraft development
+- 📚 **Minecraft Wiki** integration (search, pages, categories)
+- 🐛 **Mojira** bug tracker search
+- 🔍 **Spyglass API** (registries, commands, block states)
+- 🎨 **Misode Generators** (loot tables, recipes, worldgen presets)
 
 ---
 
-## 🚀 Quick Start
-
-### Installation
+## 🚀 Installation
 
 ```bash
-# From PyPI (recommended)
 pip install minecode-mcp
-
-# Or from GitHub
-pip install git+https://github.com/yourusername/minecode-mcp.git
-
-# Or for development
-git clone https://github.com/yourusername/minecode-mcp.git
-cd minecode-mcp
-pip install -e .
 ```
 
-### Configuration
+---
 
-#### VS Code with GitHub Copilot
+## ⚙️ Configuration
 
-Create `.vscode/mcp.json` in your workspace:
+### VS Code (GitHub Copilot)
+
+Add to **User Settings** (`Ctrl+Shift+P` → "Preferences: Open User Settings (JSON)"):
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "minecode": {
+        "type": "stdio",
+        "command": "minecode"
+      }
+    }
+  }
+}
+```
+
+Or create `.vscode/mcp.json` in your workspace:
 
 ```json
 {
   "servers": {
     "minecode": {
-      "type": "stdio",
+      "type": "stdio", 
       "command": "minecode"
     }
   }
 }
 ```
 
-#### Claude Desktop
+### Claude Desktop
 
-Add to your `claude_desktop_config.json`:
+Add to `claude_desktop_config.json`:
 
 ```json
 {
@@ -69,87 +74,66 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-**Config file locations:**
-| OS | Path |
-|----|------|
+| OS | Config Path |
+|----|-------------|
 | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 | macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | Linux | `~/.config/Claude/claude_desktop_config.json` |
-
-#### Alternative (using Python directly)
-
-```json
-{
-  "mcpServers": {
-    "minecode": {
-      "command": "python",
-      "args": ["-m", "minecode.server"]
-    }
-  }
-}
-```
 
 ---
 
 ## 🛠️ Available Tools
 
-### Basic Tools
+### Minecraft Wiki
 | Tool | Description |
 |------|-------------|
-| `hello_world` | Test connectivity with a hello message |
-| `get_minecraft_version` | Get info about a specific Minecraft version |
-| `validate_datapack` | Validate datapack syntax and structure |
-| `list_commands` | List all Minecraft commands for a version |
+| `search_wiki` | Search for wiki pages |
+| `get_wiki_page` | Get page content and summary |
+| `get_wiki_commands` | List all Minecraft commands |
+| `get_wiki_category` | Get pages in a category |
 
-### 📚 Minecraft Wiki Tools
+### Mojira Bug Tracker
 | Tool | Description |
 |------|-------------|
-| `search_wiki` | Search Minecraft Wiki for pages |
-| `get_wiki_page` | Get content and summary of a wiki page |
-| `get_wiki_commands` | Get list of all Minecraft commands from wiki |
-| `get_wiki_category` | Get all pages in a wiki category (Blocks, Items, Mobs, etc.) |
+| `search_mojira` | Search bug reports |
 
-### 🐛 Mojira Bug Tracker Tools
+### Spyglass API
 | Tool | Description |
 |------|-------------|
-| `search_mojira` | Search for Minecraft bug reports with filters |
+| `spyglass_get_versions` | Get all MC versions with pack formats |
+| `spyglass_get_registries` | Get registry entries (items, blocks, entities) |
+| `spyglass_get_block_states` | Get block state properties |
+| `spyglass_get_commands` | Get command syntax trees |
 
-### 🔍 Spyglass API Tools
+### Misode Generators
 | Tool | Description |
 |------|-------------|
-| `spyglass_get_versions` | Get all Minecraft Java Edition versions with pack formats |
-| `spyglass_get_registries` | Get registry entries (items, blocks, entities, biomes, enchantments) |
-| `spyglass_get_block_states` | Get block state properties and default values |
-| `spyglass_get_commands` | Get command syntax tree for any command |
+| `misode_get_generators` | List all datapack generators |
+| `misode_get_presets` | Get vanilla presets for a generator |
+| `misode_get_preset_data` | Get full JSON for a preset |
+| `misode_get_loot_tables` | Get loot tables by category |
+| `misode_get_recipes` | Get recipes with filtering |
 
-### 🎨 Misode Generator Tools
+### Utility
 | Tool | Description |
 |------|-------------|
-| `misode_get_generators` | List all available datapack generators |
-| `misode_get_presets` | Get vanilla presets for any generator type |
-| `misode_get_preset_data` | Get full JSON data for a specific preset |
-| `misode_get_loot_tables` | Get loot tables by category (blocks, chests, entities) |
-| `misode_get_recipes` | Get recipes with type filtering (crafting, smelting, etc.) |
+| `hello_world` | Test connectivity |
+| `get_minecraft_version` | Get version info |
+| `validate_datapack` | Validate datapack structure |
+| `list_commands` | List commands for a version |
 
 ---
 
-## 💡 Usage Examples
+## 💡 Example Prompts
 
-### Ask your AI assistant:
+> "Create a custom dimension with floating islands"
 
-**Creating datapacks:**
-> "Create a custom dimension with floating islands and rare ores"
+> "What are the block states for a redstone repeater?"
 
-**Looking up game data:**
-> "What are all the block states for a redstone repeater in 1.21?"
+> "Show me the loot table for a desert temple chest"
 
-**Finding recipes:**
-> "Show me the crafting recipe for a beacon"
+> "Search Mojira for elytra bugs"
 
-**Checking bugs:**
-> "Search Mojira for bugs related to elytra"
-
-**Getting command syntax:**
 > "What's the syntax for the /execute command?"
 
 ---
@@ -157,139 +141,41 @@ Add to your `claude_desktop_config.json`:
 ## 📁 Project Structure
 
 ```
-MineCode/
-├── minecode/                # Main package
+minecode-mcp/
+├── minecode/
 │   ├── __init__.py
-│   ├── server.py            # MCP server (19 tools)
-│   └── scrappers/           # Data fetching modules
-│       ├── __init__.py
-│       ├── minecraftwiki.py # Minecraft Wiki API client
-│       ├── mojira.py        # Mojira bug tracker scraper
-│       ├── spyglass.py      # Spyglass MC API client
-│       └── misode.py        # Misode mcmeta client
-├── example/                 # Example datapacks
-│   └── crystal_dimension/   # Custom dimension example
-├── server.py                # Standalone server (development)
-├── client.py                # Test client
-├── pyproject.toml           # Package configuration
-├── requirements.txt         # Dependencies
-├── LICENSE                  # MIT License
-└── .vscode/
-    └── mcp.json             # VS Code MCP configuration
+│   ├── server.py          # MCP server with 19 tools
+│   └── scrappers/
+│       ├── minecraftwiki.py
+│       ├── mojira.py
+│       ├── spyglass.py
+│       └── misode.py
+├── example/
+│   └── crystal_dimension/ # Example datapack
+├── pyproject.toml
+├── LICENSE
+└── readme.md
 ```
 
 ---
 
 ## 🌐 Data Sources
 
-| Source | URL | Data Provided |
-|--------|-----|---------------|
-| **Minecraft Wiki** | [minecraft.wiki](https://minecraft.wiki) | Game mechanics, items, mobs, tutorials |
-| **Mojira** | [bugs.mojang.com](https://bugs.mojang.com) | Bug reports, known issues |
-| **Spyglass MC** | [api.spyglassmc.com](https://api.spyglassmc.com) | Registries, commands, block states |
-| **Misode mcmeta** | [github.com/misode/mcmeta](https://github.com/misode/mcmeta) | Vanilla presets, generators |
-
----
-
-## 🔧 Development
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/minecode-mcp.git
-cd minecode-mcp
-
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Install in editable mode
-pip install -e .
-```
-
-### Testing
-
-```bash
-# Test the MCP server with the test client
-python client.py
-
-# Test individual scrapers
-python -c "from minecode.scrappers import spyglass; print(spyglass.get_versions())"
-```
-
-### Building & Publishing
-
-```bash
-# Install build tools
-pip install build twine
-
-# Build the package
-python -m build
-
-# Upload to TestPyPI (for testing)
-twine upload --repository testpypi dist/*
-
-# Upload to PyPI (production)
-twine upload dist/*
-```
-
----
-
-## 📦 Example Datapack
-
-The `example/crystal_dimension/` folder contains a complete datapack demonstrating MineCode's capabilities:
-
-- **Custom Dimension**: "The Crystal Void" with unique terrain
-- **Custom Biome**: Purple/cyan themed with special effects
-- **Custom Features**: Crystal ores, amethyst spikes, decorations
-- **8 Functions**: Teleport, boss spawning, item kits, building tools
-
-### Functions included:
-| Function | Description |
-|----------|-------------|
-| `/function crystal:teleport` | Teleport to The Crystal Void |
-| `/function crystal:return` | Return to the Overworld |
-| `/function crystal:give_kit` | Get Crystal Explorer kit |
-| `/function crystal:spawn_boss` | Summon the Crystal Guardian (500 HP) |
-| `/function crystal:build_tower` | Build a decorative Crystal Tower |
-| `/function crystal:help` | Show all available commands |
-
-To use it, copy `crystal_dimension/` to your Minecraft world's `datapacks/` folder.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit issues and pull requests.
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+| Source | Description |
+|--------|-------------|
+| [Minecraft Wiki](https://minecraft.wiki) | Game documentation |
+| [Mojira](https://bugs.mojang.com) | Bug tracker |
+| [Spyglass MC](https://api.spyglassmc.com) | Registries & commands |
+| [Misode](https://github.com/misode/mcmeta) | Vanilla presets |
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- [Model Context Protocol](https://modelcontextprotocol.io/) - The protocol that makes this possible
-- [Spyglass MC](https://spyglassmc.com/) - For the comprehensive Minecraft data API
-- [Misode](https://misode.github.io/) - For the datapack generators and vanilla presets
-- [Minecraft Wiki](https://minecraft.wiki/) - For the game documentation
+MIT License - see [LICENSE](LICENSE)
 
 ---
 
 <p align="center">
-  Made with 💜 for the Minecraft community
+Made with 💜 for the Minecraft community
 </p>
