@@ -91,6 +91,71 @@ Add to `claude_desktop_config.json`:
 
 ---
 
+## ⚙️ Setup & Running
+
+Follow these steps to set up a local development environment, run the MCP server, and publish releases.
+
+- Development environment (recommended):
+
+	PowerShell (Windows):
+	```powershell
+	python -m venv venv
+	.\venv\Scripts\Activate.ps1
+	python -m pip install --upgrade pip build twine
+	python -m pip install -e .
+	```
+
+	Bash (macOS/Linux):
+	```bash
+	python -m venv venv
+	source venv/bin/activate
+	python -m pip install --upgrade pip build twine
+	python -m pip install -e .
+	```
+
+- Run the MCP server locally:
+
+	- Using the venv Python:
+		```powershell
+		.\venv\Scripts\python.exe -m minecode.server
+		```
+	- Or with `py` on Windows / `python` on other OSes:
+		```bash
+		python -m minecode.server
+		```
+
+- Configure VS Code to use the running server (GitHub Copilot MCP): create `.vscode/mcp.json` in the workspace (example above) so Copilot/other MCP clients can connect to `minecode.server`.
+
+- Release workflow (single-script): use the provided `scripts/release.ps1` to bump, build and publish.
+
+	Examples (PowerShell):
+	```powershell
+	# Build only
+	.\scripts\release.ps1
+
+	# Bump patch, build, tag, push, and publish (reads token from pip_token.txt)
+	.\scripts\release.ps1 -Bump -Publish
+
+	# Build and publish without bump
+	.\scripts\release.ps1 -Publish
+	```
+
+	Notes:
+	- `pip_token.txt` (or `PYPI_API_TOKEN`) is used to upload to PyPI. Keep it secret.
+	- The script prefers `venv\Scripts\python.exe` when present.
+
+- Manual build & publish (alternative):
+
+	```bash
+	python -m build
+	export TWINE_USERNAME=__token__
+	export TWINE_PASSWORD=<PYPI_API_TOKEN>
+	python -m twine upload dist/*
+	```
+
+- CI: a GitHub Actions workflow (`.github/workflows/publish.yml`) is included to publish on tag push; add `PYPI_API_TOKEN` to repository secrets.
+
+
 ## 🛠️ Available Tools
 
 ### Minecraft Wiki
