@@ -1,0 +1,8 @@
+{
+    "servers": {
+        "minecode": {
+            "command": "C:/Users/antoi/Desktop/Informatique/2024-2025/HakatonEcole42/MineCode/venv/Scripts/python.exe",
+            "args": ["C:/Users/antoi/Desktop/Informatique/2024-2025/HakatonEcole42/MineCode/server.py"]
+        }
+    }
+}
