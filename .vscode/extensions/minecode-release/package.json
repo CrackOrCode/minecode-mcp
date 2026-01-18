@@ -1,0 +1,58 @@
+{
+  "name": "minecode-release",
+  "displayName": "MineCode Release",
+  "publisher": "yourname",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "activationEvents": [
+    "onCommand:minecode.startServer",
+    "onCommand:minecode.stopServer",
+    "onCommand:minecode.release",
+    "onCommand:minecode.releasePublish"
+  ],
+  "main": "extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "minecode.startServer",
+        "title": "MineCode: Start MCP Server"
+      },
+      {
+        "command": "minecode.stopServer",
+        "title": "MineCode: Stop MCP Server"
+      },
+      {
+        "command": "minecode.release",
+        "title": "MineCode: Release (interactive)"
+      },
+      {
+        "command": "minecode.releasePublish",
+        "title": "MineCode: Release and Publish"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "MineCode MCP Server",
+      "properties": {
+        "minecode.server.command": {
+          "type": "string",
+          "default": "py",
+          "description": "Command to run Python (used when no venv is available)"
+        },
+        "minecode.server.args": {
+          "type": "array",
+          "default": ["-m", "minecode.server"],
+          "description": "Arguments to pass to the python command"
+        },
+        "minecode.server.useVenv": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefer workspace venv (venv\\Scripts\\python.exe) when starting the server"
+        }
+      }
+    }
+  },
+  "categories": ["Other"]
+}
